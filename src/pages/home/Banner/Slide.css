@@ -1,9 +1,8 @@
-img{
+.slide_img{
 
     width: 1400px;
     height: 500px;
     object-fit: cover;
-
 }
 .img-gradient:after {
     content: '';

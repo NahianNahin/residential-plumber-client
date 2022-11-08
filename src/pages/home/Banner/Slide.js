@@ -6,7 +6,7 @@ const Slide = ({slide}) => {
     return (
         <div id={`slide${id}`} className="carousel-item relative w-full">
         <div className='img-gradient'>
-            <img src={image} alt='' className=" rounded-xl my-1" />
+            <img src={image} alt='' className=" rounded-xl slide_img" />
         </div>
         <div className="absolute  transform -translate-y-1/2  left-20 top-1/2">
             <p className='text-3xl lg:text-6xl text-white font-semibold my-5'>Lowest <br /> Charge For Plumber <br /> Servicing</p>
