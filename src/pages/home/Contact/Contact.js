@@ -3,7 +3,7 @@ import {  FaCalendarAlt,  FaPhone,  FaSearchLocation } from 'react-icons/fa';
 
 const Contact = () => {
     return (
-        <div className='mb-52'>
+        <div className='mb-5'>
             <h1 className='text-center text-3xl my-10 font-semibold'>Contact <span className='text-primary'>Me</span></h1>
            
                 <div className="flex justify-evenly items-center flex-col lg:flex-row">
