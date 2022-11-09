@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider';
 import GoogleLogIn from '../../shared/GoogleLogIn/GoogleLogIn';
 
 const Signup = () => {
+
+    const { createUser, updateUserInfo } = useContext(AuthContext);
 
     const handleCreateUser = event => {
         event.preventDefault();
@@ -11,7 +14,29 @@ const Signup = () => {
         const password = form.password.value;
         const name = form.name.value;
         const url = form.url.value;
+
+        createUser(email, password)
+        .then((userCredential) => {
+
+            const user = userCredential.user;
+            handleUpdateUserInfo(name, url)
+            console.log(user);
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode, errorMessage);
+        });
+    form.reset();
         
+    }
+
+    const handleUpdateUserInfo = (name, url) => {
+        const profile = {
+            displayName: name,
+            photoURL: url
+        }
+        updateUserInfo(profile);
     }
 
     return (
