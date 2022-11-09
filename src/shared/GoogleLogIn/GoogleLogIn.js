@@ -1,6 +1,11 @@
 import React, { useContext } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../contexts/AuthProvider';
+import toast from 'react-hot-toast';
+
+
+
+
 const GoogleLogIn = () => {
     const { googlelogIn } = useContext(AuthContext);
     // Handle For Google Login  
@@ -9,6 +14,7 @@ const GoogleLogIn = () => {
             .then((result) => {
                 const user = result.user;
                 console.log(user);
+                toast.success('Successfully Google Login.')
             }).catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;

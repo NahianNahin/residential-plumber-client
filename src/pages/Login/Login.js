@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import GoogleLogIn from '../../shared/GoogleLogIn/GoogleLogIn';
+import toast from 'react-hot-toast';
 
 const Login = () => {
     let navigate = useNavigate();
@@ -19,6 +20,7 @@ const Login = () => {
 
             const user = userCredential.user;
             console.log(user);
+            toast.success('SuccessFully Sign Up');
             navigate(from, { replace: true });
         })
         .catch((error) => {
