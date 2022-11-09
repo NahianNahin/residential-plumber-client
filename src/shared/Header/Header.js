@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { FaSignOutAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const Header = () => {
+    const { logout } = useContext(AuthContext);
     const menuItems = <>
         <li><Link to='/' className='font-semibold'>Home</Link></li>
         <li><Link to='/services' className='font-semibold'>Services</Link></li>
@@ -30,7 +33,7 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <p>Add Button</p>
+                <button onClick={logout} className='text-xl'><FaSignOutAlt></FaSignOutAlt></button>
             </div>
         </div>
     );
