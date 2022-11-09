@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 
 const ServiceDetails = () => {
     const details = useLoaderData();
@@ -12,6 +12,7 @@ const ServiceDetails = () => {
                     <p className='text-left text-3xl font-semibold p-5'>{title}</p>
                     <p className='text-left  '>{description}</p>
                     <p className='text-left md:text-xl '>I provide my service at a very low cost--- <span className='text-primary lg:text-2xl font-semibold'>${service_charge}</span></p>
+                    <Link to={`/add_reviews/${_id}`}><button className='btn btn-link'>Add Review</button></Link>
                 </div>
                 <div className='lg:w-1/3 p-2'>
                     <img className='rounded-lg' src={img} alt="" />
