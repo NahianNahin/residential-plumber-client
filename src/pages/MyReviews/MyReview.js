@@ -1,8 +1,8 @@
 import React from 'react';
 import { FaRegEdit, FaTrashAlt } from 'react-icons/fa';
 
-const MyReview = ({rev}) => {
-    const { User_name, review, user_img, rating, serviceName } = rev;
+const MyReview = ({ rev, handleDeleteReview }) => {
+    const { User_name, review, user_img, rating, serviceName, _id } = rev;
     return (
         <div className='shadow-lg p-5 rounded-lg bg-slate-100 mx-10 md:mx-0'>
             <p className='text-center text-2xl mt-3 mb-7'>{serviceName}</p>
@@ -18,8 +18,8 @@ const MyReview = ({rev}) => {
                     </div>
                 </div>
             </div>
-            <div className='flex gap-5 items-center'>
-                <button><FaTrashAlt className='text-xl text-red-700'></FaTrashAlt></button>
+            <div className='flex gap-5 items-center mt-5'>
+                <button onClick={() => handleDeleteReview(_id)}><FaTrashAlt className='text-xl text-red-700'></FaTrashAlt></button>
                 <button><FaRegEdit className='text-xl'></FaRegEdit></button>
             </div>
         </div>
