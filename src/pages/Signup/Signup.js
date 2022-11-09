@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import GoogleLogIn from '../../shared/GoogleLogIn/GoogleLogIn';
 
 const Signup = () => {
-
+    let navigate = useNavigate();
     const { createUser, updateUserInfo } = useContext(AuthContext);
 
     const handleCreateUser = event => {
@@ -21,6 +21,7 @@ const Signup = () => {
             const user = userCredential.user;
             handleUpdateUserInfo(name, url)
             console.log(user);
+            navigate('/');
         })
         .catch((error) => {
             const errorCode = error.code;
