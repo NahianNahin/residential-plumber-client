@@ -19,6 +19,7 @@ const AddReview = () => {
             serviceName: title,
             User_name: user.displayName,
             date: new Date(),
+            user_img: user.photoURL,
             email,
             review,
             rating
