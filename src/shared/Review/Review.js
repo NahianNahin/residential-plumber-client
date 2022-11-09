@@ -1,4 +1,6 @@
 import React from 'react';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
 
 const Review = ({ rev }) => {
     const { User_name, review, user_img, rating, serviceName } = rev;
@@ -13,7 +15,11 @@ const Review = ({ rev }) => {
                 </div>
                 <div className="avatar">
                     <div className="w-24 mask mask-squircle">
-                        <img src={user_img} alt='user' />
+                        <PhotoProvider>
+                            <PhotoView src={user_img}>
+                                <img src={user_img} alt='user' />
+                            </PhotoView>
+                        </PhotoProvider>
                     </div>
                 </div>
             </div>

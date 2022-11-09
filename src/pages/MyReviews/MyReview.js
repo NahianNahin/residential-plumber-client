@@ -1,6 +1,8 @@
 import React from 'react';
 import { FaRegEdit, FaTrashAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
 
 const MyReview = ({ rev, handleDeleteReview }) => {
     const { User_name, review, user_img, rating, serviceName, _id } = rev;
@@ -15,13 +17,17 @@ const MyReview = ({ rev, handleDeleteReview }) => {
                 </div>
                 <div className="avatar">
                     <div className="w-24 mask mask-squircle">
-                        <img src={user_img} alt='user' />
+                        <PhotoProvider>
+                            <PhotoView src={user_img}>
+                                <img src={user_img} alt='user' />
+                            </PhotoView>
+                        </PhotoProvider>
                     </div>
                 </div>
             </div>
             <div className='flex gap-5 items-center mt-5'>
                 <button onClick={() => handleDeleteReview(_id)}><FaTrashAlt className='text-xl text-red-700'></FaTrashAlt></button>
-                <Link to={`/edit_reviews/${_id}`}><button><FaRegEdit className='text-xl'></FaRegEdit></button></Link>
+                <Link to={`/edit_reviews/${_id}`}><button><FaRegEdit className='text-xl text-warning'></FaRegEdit></button></Link>
             </div>
         </div>
     );

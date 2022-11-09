@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import Review from '../../../shared/Review/Review';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
 
 const ServiceDetails = () => {
     const details = useLoaderData();
@@ -26,7 +28,11 @@ const ServiceDetails = () => {
                         <Link to={`/add_reviews/${_id}`}><button className='btn btn-link'>Add Review</button></Link>
                     </div>
                     <div className='lg:w-1/3 p-2'>
-                        <img className='rounded-lg' src={img} alt="" />
+                        <PhotoProvider>
+                            <PhotoView src={img}>
+                            <img className='rounded-lg' src={img} alt="" />
+                            </PhotoView>
+                        </PhotoProvider>
                     </div>
                 </div>
             </div>
