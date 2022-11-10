@@ -9,7 +9,7 @@ const Services = () => {
     const services = useLoaderData();
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/reviews',{
+        fetch('https://my-assignment-11-server.vercel.app/reviews',{
             headers: {
                 authorization: `Bearer ${localStorage.getItem('plumber-token')}`
             }
@@ -26,7 +26,7 @@ const Services = () => {
                 }
             </div>
             <h1 className='text-center text-3xl mb-10 '>Reviews : {reviews.length}</h1>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-52'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20'>
                 {
                     reviews.map(rev => <Review key={rev._id} rev={rev}></Review>)
                 }

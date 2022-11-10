@@ -3,7 +3,7 @@ import { FaHammer, FaRegIdBadge, FaUserAlt } from 'react-icons/fa';
 
 const Choose = () => {
     return (
-        <div className='mb-52'>
+        <div className='mb-28'>
             <h1 className='text-center text-3xl my-10 font-semibold'><span className='text-primary'>Why</span> Choose <span className='text-primary'>Me</span></h1>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
                 <div className='card bg-base-100 shadow-xl border-t-4 border-primary pt-10 mx-10 lg:mx-2'>

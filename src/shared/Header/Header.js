@@ -1,17 +1,19 @@
+
 import React, { useContext } from 'react';
-import { FaSignOutAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const Header = () => {
-    const { logout } = useContext(AuthContext);
+    const { logout, user } = useContext(AuthContext);
     const menuItems = <>
         <li><Link to='/' className='font-semibold'>Home</Link></li>
         <li><Link to='/services' className='font-semibold'>Services</Link></li>
-        <li><Link to='/my_reviews' className='font-semibold'>My Reviews</Link></li>
-        <li><Link to='/add_service' className='font-semibold'>Add Services</Link></li>
         <li><Link to='/blogs' className='font-semibold'>Blogs</Link></li>
-        <li><Link to='/login' className='font-semibold'>Login</Link></li>
+        {user?.uid && <li><Link to='/my_reviews' className='font-semibold'>My Reviews</Link></li>}
+        {user?.uid && <li><Link to='/add_service' className='font-semibold'>Add Services</Link></li>}
+        <button onClick={logout} className='font-bold btn btn-sm btn-outline m-3 lg:m-0 lg:hidden'>Sign Out</button>
+
+
 
 
     </>
@@ -36,7 +38,18 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <button onClick={logout} className='text-xl'><FaSignOutAlt></FaSignOutAlt></button>
+                {user?.uid
+                    ?
+                    <>
+                        <div className="avatar p-4">
+                            <div className="w-12  rounded-full">
+                                <img src={user?.photoURL} alt='User' />
+                            </div>
+                        </div>
+                        <button onClick={logout} className='font-bold btn btn-sm btn-outline hidden lg:inline-block'>Sign Out</button>
+                        </>
+                    :
+                    <Link to='/login' className='font-bold text-xl text-primary'>Login</Link>}
             </div>
         </div>
     );

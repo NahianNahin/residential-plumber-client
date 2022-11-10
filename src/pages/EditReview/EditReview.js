@@ -30,7 +30,7 @@ const EditReview = () => {
             rating
         }
         console.log(Review);
-        fetch(`http://localhost:5000/reviews/${_id}`, {
+        fetch(`https://my-assignment-11-server.vercel.app/reviews/${_id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ const EditReview = () => {
     return (
         <div>
 
-            <form onSubmit={handleEditReviews} className='card shadow-lg p-10 mx-10 lg:mx-28 mt-16 mb-52 border-t-2 border-primary'>
+            <form onSubmit={handleEditReviews} className='card shadow-lg p-10 mx-10 lg:mx-28 mt-16 mb-28 border-t-2 border-primary'>
                 <h1 className='text-center text-3xl my-5 '>Edit Your Review</h1>
                 <p className='text-center text-xl'>Give your valueable review for <span className='text-primary font-semibold'>{serviceName}</span></p>
                 <div className="form-control">

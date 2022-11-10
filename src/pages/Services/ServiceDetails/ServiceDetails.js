@@ -11,7 +11,7 @@ const ServiceDetails = () => {
     const { _id, title, img, service_charge, description } = details;
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/service_review?service=${details?._id}`, {
+        fetch(`https://my-assignment-11-server.vercel.app/service_review?service=${details?._id}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('plumber-token')}`
             }
@@ -43,7 +43,7 @@ const ServiceDetails = () => {
                 </div>
             </div>
             <h1 className='text-center text-3xl mb-10 '>Reviews : {reviews.length}</h1>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-52'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-28'>
                 {
                     reviews.map(rev => <Review key={rev._id} rev={rev}></Review>)
                 }

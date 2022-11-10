@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import useTitle from '../../hooks/useTitle';
@@ -27,7 +28,7 @@ const AddReview = () => {
             rating
         }
         console.log(Review);
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://my-assignment-11-server.vercel.app/reviews', {
             method: 'POST', 
             headers: {
                 'Content-Type': 'application/json',
@@ -39,6 +40,7 @@ const AddReview = () => {
             .then((data) => {
                 console.log('Success:', data);
                 if(data.acknowledged){
+                    toast.success('Successfully Added Review');
                     form.reset();
                 }
             })
@@ -50,7 +52,7 @@ const AddReview = () => {
     return (
         <div>
 
-            <form onSubmit={handleAddReviews} className='card shadow-lg p-10 mx-10 lg:mx-28 mt-16 mb-52 border-t-2 border-primary'>
+            <form onSubmit={handleAddReviews} className='card shadow-lg p-10 mx-10 lg:mx-28 mt-16 mb-28 border-t-2 border-primary'>
                 <h1 className='text-center text-3xl my-5 '>Add Your Review</h1>
                 <p className='text-center text-xl'>Give your valueable review for <span className='text-primary font-semibold'>{service.title}</span></p>
                 <div className="form-control">

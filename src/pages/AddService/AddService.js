@@ -1,4 +1,5 @@
 import React from 'react';
+import toast from 'react-hot-toast';
 import useTitle from '../../hooks/useTitle';
 
 const AddService = () => {
@@ -17,7 +18,7 @@ const AddService = () => {
             description
         }
         console.log(Service);
-        fetch('http://localhost:5000/service', {
+        fetch('https://my-assignment-11-server.vercel.app/service', {
             method: 'POST', 
             headers: {
                 'Content-Type': 'application/json',
@@ -28,6 +29,7 @@ const AddService = () => {
             .then((data) => {
                 console.log('Success:', data);
                 if(data.acknowledged){
+                    toast.success('SuccessFully Added Service');
                     form.reset();
                 }
             })
@@ -40,7 +42,7 @@ const AddService = () => {
 
     return (
         <div>
-            <form onSubmit={handleAddServices} className='card shadow-lg p-10 mx-10 lg:mx-28 mt-16 mb-52 border-t-2 border-primary'>
+            <form onSubmit={handleAddServices} className='card shadow-lg p-10 mx-10 lg:mx-28 mt-16 mb-28 border-t-2 border-primary'>
                 <h1 className='text-center text-3xl my-5 '>Add Your Service</h1>
                 <div className="form-control">
                     <label className="label">
