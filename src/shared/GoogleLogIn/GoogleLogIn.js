@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../contexts/AuthProvider';
 import toast from 'react-hot-toast';
-import { setJwtToken } from '../../utilities/jwtToken';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 
@@ -20,8 +19,27 @@ const GoogleLogIn = () => {
                 const user = result.user;
                 console.log(user);
                 toast.success('Successfully Google Login.');
-                setJwtToken(user);
-                navigate(from, { replace: true });
+
+                const currentUser = {
+                    email: user.email
+                }
+                // Get JWT Token
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(currentUser),
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log('Success:', data);
+                        // Store in Local-Storage
+                        localStorage.setItem('plumber-token', data.token);
+                        navigate(from, { replace: true });
+                    })
+
+
             }).catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;

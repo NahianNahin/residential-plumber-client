@@ -3,9 +3,11 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import GoogleLogIn from '../../shared/GoogleLogIn/GoogleLogIn';
 import toast from 'react-hot-toast';
-import { setJwtToken } from '../../utilities/jwtToken';
+import useTitle from '../../hooks/useTitle';
+
 
 const Login = () => {
+    useTitle('Log In')
     let navigate = useNavigate();
     let location = useLocation();
     const { login, setLoading } = useContext(AuthContext);
@@ -22,8 +24,27 @@ const Login = () => {
                 const user = userCredential.user;
                 console.log(user);
                 toast.success('SuccessFully Sign Up');
-                setJwtToken(user);
-                navigate(from, { replace: true });
+                
+                const currentUser = {
+                    email: user.email
+                }
+                // Get JWT Token
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(currentUser),
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log('Success:', data);
+                        // Store in Local-Storage
+                        localStorage.setItem('plumber-token', data.token);
+                        navigate(from, { replace: true });
+                    })
+
+                
                 form.reset();
             })
             .catch((error) => {

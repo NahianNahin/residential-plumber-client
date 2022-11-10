@@ -4,8 +4,10 @@ import { AuthContext } from '../../contexts/AuthProvider';
 import GoogleLogIn from '../../shared/GoogleLogIn/GoogleLogIn';
 import toast from 'react-hot-toast';
 import { setJwtToken } from '../../utilities/jwtToken';
+import useTitle from '../../hooks/useTitle';
 
 const Signup = () => {
+    useTitle('Sign Up');
     let navigate = useNavigate();
     const { createUser, updateUserInfo } = useContext(AuthContext);
 

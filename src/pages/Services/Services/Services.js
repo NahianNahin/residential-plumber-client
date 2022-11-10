@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import useTitle from '../../../hooks/useTitle';
 import Review from '../../../shared/Review/Review';
 import Service from '../Service/Service';
 
 const Services = () => {
+    useTitle('Services');
     const services = useLoaderData();
     const [reviews, setReviews] = useState([]);
     useEffect(() => {

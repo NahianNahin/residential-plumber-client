@@ -1,8 +1,11 @@
 import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
+import useTitle from '../../hooks/useTitle';
 
 const EditReview = () => {
+
+    useTitle('Edit Review');
 
     const oldReview = useLoaderData();
     const { _id, serviceName, service } = oldReview;

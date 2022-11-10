@@ -3,8 +3,10 @@ import { Link, useLoaderData } from 'react-router-dom';
 import Review from '../../../shared/Review/Review';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
+import useTitle from '../../../hooks/useTitle';
 
 const ServiceDetails = () => {
+    useTitle('Service Details')
     const details = useLoaderData();
     const { _id, title, img, service_charge, description } = details;
     const [reviews, setReviews] = useState([]);

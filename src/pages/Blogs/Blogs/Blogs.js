@@ -1,8 +1,10 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import useTitle from '../../../hooks/useTitle';
 import Blog from '../Blog/Blog';
 
 const Blogs = () => {
+    useTitle('Blogs');
     const blogs = useLoaderData();
     return (
         <div className='w-11/12 m-auto'>
