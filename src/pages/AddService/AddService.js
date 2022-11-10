@@ -18,8 +18,8 @@ const AddService = () => {
             description
         }
         console.log(Service);
-        fetch('https://my-assignment-11-server.vercel.app/service', {
-            method: 'POST', 
+        fetch('https://my-assignment-11-server-nahiannahin.vercel.app/service', {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -28,7 +28,7 @@ const AddService = () => {
             .then((response) => response.json())
             .then((data) => {
                 console.log('Success:', data);
-                if(data.acknowledged){
+                if (data.acknowledged) {
                     toast.success('SuccessFully Added Service');
                     form.reset();
                 }
@@ -38,7 +38,7 @@ const AddService = () => {
             });
     }
 
-    
+
 
     return (
         <div>
@@ -48,13 +48,13 @@ const AddService = () => {
                     <label className="label">
                         <span className="label-text">Service Title</span>
                     </label>
-                    <input type="text" name='title'  placeholder="Service Title" className="input input-bordered" />
+                    <input type="text" name='title' placeholder="Service Title" className="input input-bordered" />
                 </div>
                 <div className="form-control">
                     <label className="label">
                         <span className="label-text">Service Image</span>
                     </label>
-                    <input type="text" name='img'  placeholder="Image URL" className="input input-bordered" />
+                    <input type="text" name='img' placeholder="Image URL" className="input input-bordered" />
                 </div>
                 <div className="form-control">
                     <label className="label">

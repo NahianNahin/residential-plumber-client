@@ -4,7 +4,7 @@ import Slide from './Slide';
 const Banner = () => {
     const [banner, setBanner] = useState([]);
     useEffect(() => {
-        fetch('https://my-assignment-11-server.vercel.app/banners')
+        fetch('https://my-assignment-11-server-nahiannahin.vercel.app/banners')
             .then(res => res.json())
             .then(data => setBanner(data))
     }, [])

@@ -7,7 +7,7 @@ import useTitle from '../../hooks/useTitle';
 const AddReview = () => {
     useTitle('Add Review');
     const service = useLoaderData();
-    const {_id,title,} = service;
+    const { _id, title, } = service;
     const { user } = useContext(AuthContext);
 
     const handleAddReviews = event => {
@@ -28,8 +28,8 @@ const AddReview = () => {
             rating
         }
         console.log(Review);
-        fetch('https://my-assignment-11-server.vercel.app/reviews', {
-            method: 'POST', 
+        fetch('https://my-assignment-11-server-nahiannahin.vercel.app/reviews', {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 authorization: `Bearer ${localStorage.getItem('plumber-token')}`
@@ -39,7 +39,7 @@ const AddReview = () => {
             .then((response) => response.json())
             .then((data) => {
                 console.log('Success:', data);
-                if(data.acknowledged){
+                if (data.acknowledged) {
                     toast.success('Successfully Added Review');
                     form.reset();
                 }
@@ -59,7 +59,7 @@ const AddReview = () => {
                     <label className="label">
                         <span className="label-text">Email</span>
                     </label>
-                    <input type="email" name='email' defaultValue={user?.email} placeholder="Email" className="input input-bordered" readOnly/>
+                    <input type="email" name='email' defaultValue={user?.email} placeholder="Email" className="input input-bordered" readOnly />
                 </div>
                 <div className="form-control">
                     <label className="label">

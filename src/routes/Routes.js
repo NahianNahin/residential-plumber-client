@@ -24,13 +24,13 @@ const router = createBrowserRouter([
             },
             {
                 path: '/services',
-                element: <PrivateRoutes><Services></Services></PrivateRoutes>,
-                loader: () => fetch('https://my-assignment-11-server.vercel.app/services')
+                element: <Services></Services>,
+                loader: () => fetch('https://my-assignment-11-server-nahiannahin.vercel.app/services')
             },
             {
                 path: '/Blogs',
                 element: <Blogs></Blogs>,
-                loader: () => fetch('https://my-assignment-11-server.vercel.app/blogs')
+                loader: () => fetch('https://my-assignment-11-server-nahiannahin.vercel.app/blogs')
             },
             {
                 path: '/add_service',
@@ -39,21 +39,17 @@ const router = createBrowserRouter([
             {
                 path: `/services/:id`,
                 element: <ServiceDetails></ServiceDetails>,
-                loader: ({ params }) => fetch(`https://my-assignment-11-server.vercel.app/services/${params.id}`)
+                loader: ({ params }) => fetch(`https://my-assignment-11-server-nahiannahin.vercel.app/services/${params.id}`)
             },
             {
                 path: `/add_reviews/:id`,
                 element: <PrivateRoutes><AddReview></AddReview></PrivateRoutes>,
-                loader: ({ params }) => fetch(`https://my-assignment-11-server.vercel.app/services/${params.id}`)
+                loader: ({ params }) => fetch(`https://my-assignment-11-server-nahiannahin.vercel.app/services/${params.id}`)
             },
             {
                 path: `/edit_reviews/:id`,
                 element: <EditReview></EditReview>,
-                loader: ({ params }) => fetch(`https://my-assignment-11-server.vercel.app/review/${params.id}`,{
-                    headers: {
-                        authorization: `Bearer ${localStorage.getItem('plumber-token')}`
-                    }
-                })
+                loader: ({ params }) => fetch(`https://my-assignment-11-server-nahiannahin.vercel.app/review/${params.id}`)
             },
             {
                 path: '/my_reviews',

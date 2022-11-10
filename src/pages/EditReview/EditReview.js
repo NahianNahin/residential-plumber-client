@@ -30,7 +30,7 @@ const EditReview = () => {
             rating
         }
         console.log(Review);
-        fetch(`https://my-assignment-11-server.vercel.app/reviews/${_id}`, {
+        fetch(`https://my-assignment-11-server-nahiannahin.vercel.app/reviews/${_id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

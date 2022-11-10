@@ -24,7 +24,7 @@ const GoogleLogIn = () => {
                     email: user.email
                 }
                 // Get JWT Token
-                fetch('https://my-assignment-11-server.vercel.app/jwt', {
+                fetch('https://my-assignment-11-server-nahiannahin.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
