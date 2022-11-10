@@ -29,6 +29,7 @@ const AddReview = () => {
             method: 'POST', 
             headers: {
                 'Content-Type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('plumber-token')}`
             },
             body: JSON.stringify(Review),
         })

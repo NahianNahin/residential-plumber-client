@@ -3,10 +3,14 @@ import { AuthContext } from '../../contexts/AuthProvider';
 import MyReview from './MyReview';
 
 const MyReviews = () => {
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/review?email=${user?.email}`)
+        fetch(`http://localhost:5000/review?email=${user?.email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('plumber-token')}`
+            }
+        })
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [user?.email])
@@ -17,6 +21,9 @@ const MyReviews = () => {
         if (accepted) {
             fetch(`http://localhost:5000/review/${id}`, {
                 method: 'DELETE',
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('plumber-token')}`
+                }
             })
                 .then((response) => response.json())
                 .then((data) => {
@@ -31,7 +38,7 @@ const MyReviews = () => {
                 });
         }
     }
-    
+
     return (
         <div>
             <h1 className='text-center text-3xl my-10 '>My Reviews : {reviews.length}</h1>

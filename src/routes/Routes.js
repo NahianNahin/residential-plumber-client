@@ -24,7 +24,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/services',
-                element: <Services></Services>,
+                element: <PrivateRoutes><Services></Services></PrivateRoutes>,
                 loader: () => fetch('http://localhost:5000/services')
             },
             {
@@ -34,22 +34,26 @@ const router = createBrowserRouter([
             },
             {
                 path: '/add_service',
-                element: <AddService></AddService>
+                element: <PrivateRoutes><AddService></AddService></PrivateRoutes>
             },
             {
                 path: `/services/:id`,
                 element: <ServiceDetails></ServiceDetails>,
-                loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
             },
             {
                 path: `/add_reviews/:id`,
                 element: <PrivateRoutes><AddReview></AddReview></PrivateRoutes>,
-                loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
             },
             {
                 path: `/edit_reviews/:id`,
                 element: <EditReview></EditReview>,
-                loader: ({params}) => fetch(`http://localhost:5000/review/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/review/${params.id}`,{
+                    headers: {
+                        authorization: `Bearer ${localStorage.getItem('plumber-token')}`
+                    }
+                })
             },
             {
                 path: '/my_reviews',
@@ -63,13 +67,14 @@ const router = createBrowserRouter([
                 path: '/signup',
                 element: <Signup></Signup>
             },
-            {
-                path: '*',
-                element: <ErrorPage></ErrorPage>
-            }
+
         ]
     },
-    
+    {
+        path: '*',
+        element: <ErrorPage></ErrorPage>
+    }
+
 ]);
 
 export default router;

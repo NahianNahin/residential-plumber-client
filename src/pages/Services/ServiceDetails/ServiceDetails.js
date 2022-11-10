@@ -9,7 +9,11 @@ const ServiceDetails = () => {
     const { _id, title, img, service_charge, description } = details;
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/service_review?service=${details?._id}`)
+        fetch(`http://localhost:5000/service_review?service=${details?._id}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('plumber-token')}`
+            }
+        })
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -30,7 +34,7 @@ const ServiceDetails = () => {
                     <div className='lg:w-1/3 p-2'>
                         <PhotoProvider>
                             <PhotoView src={img}>
-                            <img className='rounded-lg' src={img} alt="" />
+                                <img className='rounded-lg' src={img} alt="" />
                             </PhotoView>
                         </PhotoProvider>
                     </div>

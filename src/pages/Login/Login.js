@@ -3,11 +3,12 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import GoogleLogIn from '../../shared/GoogleLogIn/GoogleLogIn';
 import toast from 'react-hot-toast';
+import { setJwtToken } from '../../utilities/jwtToken';
 
 const Login = () => {
     let navigate = useNavigate();
     let location = useLocation();
-    const { login } = useContext(AuthContext);
+    const { login, setLoading } = useContext(AuthContext);
     let from = location.state?.from?.pathname || "/";
     const handleLoginUser = event => {
         event.preventDefault();
@@ -16,20 +17,26 @@ const Login = () => {
         const password = form.password.value;
         // console.log(email,form,password);
         login(email, password)
-        .then((userCredential) => {
+            .then((userCredential) => {
 
-            const user = userCredential.user;
-            console.log(user);
-            toast.success('SuccessFully Sign Up');
-            navigate(from, { replace: true });
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode, errorMessage);
-        });
-    form.reset();
+                const user = userCredential.user;
+                console.log(user);
+                toast.success('SuccessFully Sign Up');
+                setJwtToken(user);
+                navigate(from, { replace: true });
+                form.reset();
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode, errorMessage);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+            
         
+
     }
     return (
         <div className="hero mt-10 mb-40">
@@ -57,7 +64,7 @@ const Login = () => {
                             </label>
                             <label className="label">
                                 <p> Don't Have Any Account ? Please <Link to='/signup' className="text-primary">Sign Up</Link></p>
-                                
+
                             </label>
                         </div>
                         <div className="form-control mt-6">

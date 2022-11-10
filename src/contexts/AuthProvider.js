@@ -48,6 +48,7 @@ const AuthProvider = ({ children }) => {
 
     // For Logout 
     const logout = () => {
+        localStorage.removeItem('plumber-token');
         setLoading(true)
         signOut(auth).then(() => {
             toast.success('Sign-out successful.');
@@ -61,6 +62,7 @@ const AuthProvider = ({ children }) => {
     const AuthData = {
         user,
         loading,
+        setLoading,
         createUser,
         login,
         googlelogIn,

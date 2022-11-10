@@ -7,7 +7,11 @@ const Services = () => {
     const services = useLoaderData();
     const [reviews, setReviews] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/reviews')
+        fetch('http://localhost:5000/reviews',{
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('plumber-token')}`
+            }
+        })
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [])

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import GoogleLogIn from '../../shared/GoogleLogIn/GoogleLogIn';
 import toast from 'react-hot-toast';
+import { setJwtToken } from '../../utilities/jwtToken';
 
 const Signup = () => {
     let navigate = useNavigate();
@@ -23,6 +24,7 @@ const Signup = () => {
             handleUpdateUserInfo(name, url)
             console.log(user);
             toast.success('SuccessFully Sign Up');
+            setJwtToken(user);
             navigate('/');
         })
         .catch((error) => {

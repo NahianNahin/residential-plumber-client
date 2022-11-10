@@ -2,23 +2,33 @@ import React, { useContext } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../contexts/AuthProvider';
 import toast from 'react-hot-toast';
+import { setJwtToken } from '../../utilities/jwtToken';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 
 
 const GoogleLogIn = () => {
-    const { googlelogIn } = useContext(AuthContext);
+    let navigate = useNavigate();
+    let location = useLocation();
+    const { googlelogIn, setLoading } = useContext(AuthContext);
+    let from = location.state?.from?.pathname || "/";
     // Handle For Google Login  
     const handleGoogleLogin = () => {
         googlelogIn()
             .then((result) => {
                 const user = result.user;
                 console.log(user);
-                toast.success('Successfully Google Login.')
+                toast.success('Successfully Google Login.');
+                setJwtToken(user);
+                navigate(from, { replace: true });
             }).catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log(errorCode, errorMessage);
+            })
+            .finally(() => {
+                setLoading(false);
             });
     }
     return (
